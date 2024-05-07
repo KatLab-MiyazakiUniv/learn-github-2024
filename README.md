@@ -1,4 +1,4 @@
-# learn-github-2023
+# learn-github-2024
 
 ## 演習
 ※以下で[~]のように説明しているところでは，入力する際は[]は含めない
@@ -11,7 +11,7 @@ $ git clone https://github.com/[githubユーザ名]/learn-github-2024.git
 ### 3. `upstream`を登録する
 `upstream`として親リポジトリを登録する(`upstream`は後述する最新の状態の取得で使用する)
 ```
-$ cd learn-github-2023
+$ cd learn-github-2024
 $ git remote add upstream https://github.com/KatLab-MiyazakiUniv/learn-github-2024.git
 ```
 
