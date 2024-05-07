@@ -1,77 +1,111 @@
 # learn-github-2024
 
 ## 演習
+
 ※以下で[~]のように説明しているところでは，入力する際は[]は含めない
+
 ### 1. `KatLab-MiyazakiUniv/learn-github-2024`を`fork`する
 
 ### 2. `fork`した自分のリポジトリをクローンする
+
 ```
 $ git clone https://github.com/[githubユーザ名]/learn-github-2024.git
 ```
+
 ### 3. `upstream`を登録する
+
 `upstream`として親リポジトリを登録する(`upstream`は後述する最新の状態の取得で使用する)
+
 ```
 $ cd learn-github-2024
 $ git remote add upstream https://github.com/KatLab-MiyazakiUniv/learn-github-2024.git
 ```
 
 ### 4. ローカルリポジトリで作業する
-#### 4.1. githubで`issue`を建てる
-githubの`issues`タブにある`New issue`をクリックして`issue`を建てる  
+
+#### 4.1. github で`issue`を建てる
+
+github の`issues`タブにある`New issue`をクリックして`issue`を建てる  
 タイトルを「課題提出([自分の名前])」にして，コメントは下図のように記述する
+
 #### 4.2. 作業用ブランチを切る
+
 ブランチを確認すると，現在`main`ブランチにいることが分かる
+
 ```
 $ cd learn-github-2024/[自分の名前のディレクトリ]
 $ git branch
 * main
 ```
+
 `git switch -c`で作業用ブランチを作成して移動する  
-`git branch`コマンドで確認した時に，新しく作ったブランチに`*`が付いていればOK
+`git branch`コマンドで確認した時に，新しく作ったブランチに`*`が付いていれば OK
+
 ```
 $ git switch -c ticket-[issue番号]
 $ git branch
   main
 * ticket-[issue番号]
 ```
+
 ※`git switch`はブランチを移動するコマンドで，オプションに`-c`をつけることで新たにブランチを作成して移動する
+
 #### 4.3. 列挙体の課題ファイルをディレクトリ下に新たに追加して，`.gitkeep`を削除する
+
 課題ファイルの名前は`Direction.cpp`にしてください
+
 #### 4.4. 編集内容をコミットする
+
 まず．`git status`で，編集したファイル(追加・削除も含む)が赤く表示されていることを確認する
+
 ```
 $ git status
 //編集内容が表示される
 ```
+
 編集内容をインデックスに追加する  
 この時，`git status`で確認すると，先程の赤い表示の箇所が緑になっている
+
 ```
 $ git add PidGain.cpp PidGain.h
 $ git status
 //編集内容が表示される
 ```
+
 インデックスの内容をローカルリポジトリにコミットする
+
 ```
 $ git commit -m "編集内容の簡潔な説明"
 ```
+
 #### 4.5. 自分のリモートリポジトリ(origin)に`push`する
+
 ```
 $ git push origin ticket-[issue番号]
 ```
 
-### 5. KatLabのリポジトリにプルリクを出す
-githubで自分のリポジトリを開いて以下の手順で操作する
+### 5. KatLab のリポジトリにプルリクを出す
+
+github で自分のリポジトリを開いて以下の手順で操作する
+
 #### ①`Compare & pull request`をクリック
-#### ②プルリクのタイトルと内容を記述する
-#### ③レビューしてほしい人を選択する
+
+#### ② プルリクのタイトルと内容を記述する
+
+#### ③ レビューしてほしい人を選択する
+
 #### ③`Create pull request`をクリック
-※プルリクのタイトルは`close #[issue番号] [プルリクの説明]`とすると，該当issueと自動で紐づけられる
+
+※プルリクのタイトルは`close #[issue番号] [プルリクの説明]`とすると，該当 issue と自動で紐づけられる
 
 ### 6. レビューを受けて修正する
+
 `Request change`があれば修正し，レビュワー全員から`Approve`をもらったらマージする
 
 ### 7. ローカルリポジトリの`main`ブランチを最新の状態に更新する
+
 `git pull`コマンドを使って，親リポジトリ(`upstream`)から最新の状態を取得する
+
 ```
 $ git switch main
 $ git pull upstream main
@@ -79,10 +113,16 @@ $ git pull upstream main
 
 `main`ブランチを更新出来たら，新たにブランチを切って次の作業を進める(演習はここまで)
 
+# Google Test の実行について
 
-# Google Testの実行について
+第3回では、#演習 の、3番までを行う。
 
-1. googletest/build の中身を削除
+## 1. Dockerfile からコンテナを作成、実行
+
+VSCode で、左下から「コンテナーを再度開く」
+
+
+## 2. googletest/build の中身を削除し、CMake実行
 
 ```
 # Permission denied エラーが発生したら、以下コマンドを実行
@@ -91,37 +131,13 @@ $ git pull upstream main
 ./build_make_install.sh
 ```
 
-もしくは
 
-```
-cd googletest
-rm -rf build
-mkdir build
-```
+## 3. gtest 実行
 
-2. cmake 実行
-
-ここまで build_make_install.sh に書いてある。
-手打ちなら続きのコマンドを、以下の通りに。
-
-```
-cd build
-cmake ..
-make
-make install
-```
-
-3. gtest実行
-
-`./gtest_all.sh`
-
-もしくは
 
 ```
 # Permission denied エラーが発生したら、以下コマンドを実行
 # chmod 755 gtest_all.sh
 
-g++ test/*.cpp modules/*.cpp -pthread -lgtest_main -lgtest -o gtest
-./gtest
-rm gtest
+./gtest_all.sh
 ```

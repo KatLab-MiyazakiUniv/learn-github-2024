@@ -1,6 +1,6 @@
 FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
-WORKDIR /workspaces/learn-gtest
+WORKDIR /workspaces/learn-github-2024
 
 RUN apt update && apt upgrade -y
 
@@ -10,8 +10,5 @@ RUN apt install -y wget
 RUN apt install -y build-essential
 
 RUN git clone https://github.com/google/googletest
-
-RUN chmod 755 build_make_install.sh
-RUN chmod 755 gtest_all.sh
 
 RUN apt update && apt upgrade -y
