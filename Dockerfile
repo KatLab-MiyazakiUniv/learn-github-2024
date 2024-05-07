@@ -6,9 +6,6 @@ RUN apt update && apt upgrade -y
 
 RUN apt install -y git
 RUN apt install -y cmake g++
-RUN apt install -y wget
 RUN apt install -y build-essential
-
-RUN git clone https://github.com/google/googletest
 
 RUN apt update && apt upgrade -y

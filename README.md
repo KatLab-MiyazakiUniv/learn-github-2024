@@ -115,25 +115,22 @@ $ git pull upstream main
 
 # Google Test の実行について
 
-第3回では、#演習 の、3番までを行う。
+第 3 回では、#演習 の、3 番までを行う。
 
 ## 1. Dockerfile からコンテナを作成、実行
 
 VSCode で、左下から「コンテナーを再度開く」
 
-
-## 2. googletest/build の中身を削除し、CMake実行
+## 2. googletest/build の中身を削除し、CMake 実行
 
 ```
 # Permission denied エラーが発生したら、以下コマンドを実行
-# chmod 755 build_make_install.sh
+# chmod 755 build.sh
 
-./build_make_install.sh
+./build.sh
 ```
 
-
 ## 3. gtest 実行
-
 
 ```
 # Permission denied エラーが発生したら、以下コマンドを実行
